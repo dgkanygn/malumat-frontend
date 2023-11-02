@@ -227,7 +227,7 @@ export const Home = () => {
                 Gönderiler
               </Text>
 
-              <Flex direction={"flex-col"} gap={"gap-20"}>
+              <Flex direction={"flex-col-reverse"} gap={"gap-20"}>
                 {features.length > 0 ? (
                   features.map((feature, index) => (
                     <PostCard

@@ -22,14 +22,16 @@ export const NewComment = ({ id, setPostComments, postComments, image }) => {
 
   const sendComment = async () => {
     try {
-      const res = await createCommentReq({
-        comment,
-        postId: id,
-        ownerId: userInfo.username,
-        authorImage: userInfo.image,
-      });
-      setPostComments([...postComments, res.data.newComment]);
-      setComment("");
+      if (comment && comment !== " ") {
+        const res = await createCommentReq({
+          comment,
+          postId: id,
+          ownerId: userInfo.username,
+          authorImage: userInfo.image,
+        });
+        setPostComments([...postComments, res.data.newComment]);
+        setComment("");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +45,7 @@ export const NewComment = ({ id, setPostComments, postComments, image }) => {
             <div className="relative w-full h-full">
               <img
                 class="absolute inset-0 w-full h-full object-cover rounded"
-                src={!image ? pic : image}
+                src={image === " " ? pic : image}
                 alt=""
               />
             </div>

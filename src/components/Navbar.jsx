@@ -49,13 +49,6 @@ export const Navbar = () => {
             </div>
             <div class="flex items-center gap-10">
               <div>
-                {/* <input
-                  class="rounded bg-slate-100 p-2 outline-none max-w-[120px]"
-                  type="text"
-                  placeholder="Search.."
-                  onChange={(e) => setSearch(e.target.value)}
-                /> */}
-
                 {search && (
                   <div className="bg-white absolute shadow-lg">
                     {datas.map((data, index) => (

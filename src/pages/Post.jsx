@@ -180,7 +180,11 @@ export const Post = () => {
                   <div className="relative w-full h-full">
                     <img
                       class="absolute inset-0 w-full h-full object-cover rounded"
-                      src={!postData.authorImage ? pic : postData.authorImage}
+                      src={
+                        postData.authorImage === " "
+                          ? pic
+                          : postData.authorImage
+                      }
                       alt=""
                     />
                   </div>

@@ -20,20 +20,20 @@ export const Register = () => {
       label: "E-Mail",
       type: "text",
       name: "email",
-      placeholder: "E-mail",
+      placeholder: "E-mail*",
     },
     {
       label: "Password",
       type: "password",
       name: "password",
-      placeholder: "Şifre",
+      placeholder: "Şifre*",
     },
 
     {
       label: "Username",
       type: "text",
       name: "username",
-      placeholder: "Kullanıcı adı",
+      placeholder: "Kullanıcı adı*",
     },
     {
       label: "Name",
@@ -63,6 +63,8 @@ export const Register = () => {
   const formData2 = new FormData();
 
   const [errorMsg, setErrorMsg] = useState("");
+
+  const [checkBox, setCheckBox] = useState(false);
 
   formData2.append("email", formData.email);
   formData2.append("password", formData.password);
@@ -134,13 +136,39 @@ export const Register = () => {
                 />
               </Flex>
 
-              <Box>
-                <label htmlFor="">Bir profil resmi seç</label>
-                <input
-                  type="file"
-                  onChange={(e) => setImage(e.target.files[0])}
-                />
-              </Box>
+              <Flex direction={"flex-col"} gap={"gap-3"}>
+                <Flex direction={"flex-col"}>
+                  <Text>Fotoğraf ekleyecek misiniz?</Text>
+                  <Flex direction={"flex-row"} gap={"gap-2"}>
+                    <input
+                      type="radio"
+                      id="yes"
+                      value="true"
+                      onChange={(e) => setCheckBox(e.target.value === "true")}
+                      checked={checkBox}
+                    />
+                    <label for="yes">Evet</label>
+                  </Flex>
+                  <Flex direction={"flex-row"} gap={"gap-2"}>
+                    <input
+                      type="radio"
+                      id="no"
+                      value="false"
+                      onChange={(e) => setCheckBox(e.target.value === "true")}
+                      checked={!checkBox}
+                    />
+                    <label for="no">Hayır</label>
+                  </Flex>
+                </Flex>
+                <Flex>
+                  {checkBox && (
+                    <input
+                      type="file"
+                      onChange={(e) => setImage(e.target.files[0])}
+                    />
+                  )}
+                </Flex>
+              </Flex>
 
               {errorMsg && (
                 <p className="bg-red-100 p-3 text-red-700">{errorMsg}</p>

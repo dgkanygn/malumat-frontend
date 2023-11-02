@@ -18,6 +18,9 @@ export const PostCard = ({
 }) => {
   const isOwner = param === author;
 
+  const link =
+    "https://res.cloudinary.com/dszyogrt7/image/upload/v1698925680/ybtqchgxz9ybhpyjkxji.png";
+
   return (
     <>
       <Flex
@@ -31,8 +34,7 @@ export const PostCard = ({
             <Link to={`/post/${id}`}>
               <img
                 class="absolute inset-0 w-full h-full object-cover rounded"
-                // w-72
-                src={!image ? link : image}
+                src={image === " " ? link : image}
                 alt=""
               />
             </Link>

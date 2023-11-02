@@ -32,6 +32,8 @@ export const NewPost = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
 
+  const [checkBox, setCheckBox] = useState(false);
+
   const formData = new FormData();
 
   formData.append("title", title);
@@ -80,7 +82,7 @@ export const NewPost = () => {
           <Flex direction={"flex-col"} gap={"gap-5"}>
             <Flex direction={"flex-col"}>
               <Input
-                placeholder={"Başlık"}
+                placeholder={"Başlık*"}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 type="text"
@@ -96,15 +98,41 @@ export const NewPost = () => {
                 maxLength="65"
               />
             </Flex>
-            <Flex direction={"flex-col"}>
-              <Text>Post Image</Text>
-              <input
-                type="file"
-                onChange={(e) => setImage(e.target.files[0])}
-              />
+            <Flex direction={"flex-col"} gap={"gap-3"}>
+              <Flex direction={"flex-col"}>
+                <Text>Fotoğraf ekleyecek misiniz?</Text>
+                <Flex direction={"flex-row"} gap={"gap-2"}>
+                  <input
+                    type="radio"
+                    id="yes"
+                    value="true"
+                    onChange={(e) => setCheckBox(e.target.value === "true")}
+                    checked={checkBox}
+                  />
+                  <label for="yes">Evet</label>
+                </Flex>
+                <Flex direction={"flex-row"} gap={"gap-2"}>
+                  <input
+                    type="radio"
+                    id="no"
+                    value="false"
+                    onChange={(e) => setCheckBox(e.target.value === "true")}
+                    checked={!checkBox}
+                  />
+                  <label for="no">Hayır</label>
+                </Flex>
+              </Flex>
+              <Flex>
+                {checkBox && (
+                  <input
+                    type="file"
+                    onChange={(e) => setImage(e.target.files[0])}
+                  />
+                )}
+              </Flex>
             </Flex>
             <TextArea
-              placeholder={"Gönderi"}
+              placeholder={"Gönderi*"}
               value={post}
               onChange={(e) => setPost(e.target.value)}
             />
