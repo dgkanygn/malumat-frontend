@@ -42,7 +42,7 @@ export const ProfileButton = ({ username, image, toggle }) => {
 
   const tabs = [
     {
-      tab: "Profile",
+      tab: "Profil",
       path: `/profile/${userInfo.username}`,
     },
     // {
@@ -50,7 +50,7 @@ export const ProfileButton = ({ username, image, toggle }) => {
     //   path: "/settings",
     // },
     {
-      tab: "Logout",
+      tab: "Çıkış Yap",
       // path: "/login",
       onClick: logOut,
     },
@@ -67,7 +67,7 @@ export const ProfileButton = ({ username, image, toggle }) => {
             <div className="relative w-full h-full">
               <img
                 class="absolute inset-0 w-full h-full object-cover rounded"
-                src={!image ? pic : `http://localhost:3001/${image}`}
+                src={!image ? pic : image}
                 alt=""
               />
             </div>

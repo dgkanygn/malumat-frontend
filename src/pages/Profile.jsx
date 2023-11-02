@@ -129,11 +129,7 @@ export const Profile = () => {
                 <div className="relative w-full h-full">
                   <img
                     class="absolute inset-0 w-full h-full object-cover rounded"
-                    src={
-                      !profile.image
-                        ? pic
-                        : `http://localhost:3001/${profile.image}`
-                    }
+                    src={!profile.image ? pic : profile.image}
                     alt=""
                   />
                 </div>

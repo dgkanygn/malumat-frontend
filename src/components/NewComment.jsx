@@ -43,7 +43,7 @@ export const NewComment = ({ id, setPostComments, postComments, image }) => {
             <div className="relative w-full h-full">
               <img
                 class="absolute inset-0 w-full h-full object-cover rounded"
-                src={!image ? pic : `http://localhost:3001/${image}`}
+                src={!image ? pic : image}
                 alt=""
               />
             </div>

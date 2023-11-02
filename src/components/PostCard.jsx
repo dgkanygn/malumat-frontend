@@ -32,7 +32,7 @@ export const PostCard = ({
               <img
                 class="absolute inset-0 w-full h-full object-cover rounded"
                 // w-72
-                src={!image ? link : `http://localhost:3001/${image}`}
+                src={!image ? link : image}
                 alt=""
               />
             </Link>

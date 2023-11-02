@@ -180,11 +180,7 @@ export const Post = () => {
                   <div className="relative w-full h-full">
                     <img
                       class="absolute inset-0 w-full h-full object-cover rounded"
-                      src={
-                        !postData.authorImage
-                          ? pic
-                          : `http://localhost:3001/${postData.authorImage}`
-                      }
+                      src={!postData.authorImage ? pic : postData.authorImage}
                       alt=""
                     />
                   </div>
@@ -231,11 +227,7 @@ export const Post = () => {
             <Text>{postData.description}</Text>
             <img
               class="rounded-md"
-              src={
-                !postData.image
-                  ? link
-                  : `http://localhost:3001/${postData.image}`
-              }
+              src={!postData.image ? link : postData.image}
               alt=""
             />
             <Text>

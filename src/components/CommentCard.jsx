@@ -150,7 +150,11 @@ export const CommentCard = ({
                   onChange={(e) => setCommentInp(e.target.value)}
                 />
                 <Flex>
-                  <Button bg={"bg-blue2"} onClick={editComment} text={"Edit"} />
+                  <Button
+                    bg={"bg-blue2"}
+                    onClick={editComment}
+                    text={"Düzenle"}
+                  />
                 </Flex>
               </Flex>
             </Container>
