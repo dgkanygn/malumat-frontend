@@ -37,7 +37,12 @@ export const updatePostReq = (id, body) => {
   return axios.patch(`${BASE_URL}/updatePost/${id}`, body);
 };
 
-// post düzenleme
-export const filterData = (id, body) => {
-  return axios.patch(`${BASE_URL}/updatePost/${id}`, body);
+// veri filtreleme
+export const filterDataReq = (id) => {
+  return axios.get(`${BASE_URL}/filter/${id}`);
+};
+
+// post silme
+export const deletePostReq = (id) => {
+  return axios.delete(`${BASE_URL}/deletePost/${id}`);
 };

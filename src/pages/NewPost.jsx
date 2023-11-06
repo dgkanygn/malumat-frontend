@@ -9,6 +9,7 @@ import { Container } from "../components/Container";
 import { Flex } from "../components/Flex";
 import { Text } from "../components/Text";
 import { Input } from "../components/Input";
+import { ImagePicker } from "../components/ImagePicker";
 
 // context
 import Data from "../context/Data";
@@ -32,8 +33,6 @@ export const NewPost = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
 
-  const [checkBox, setCheckBox] = useState(false);
-
   const formData = new FormData();
 
   formData.append("title", title);
@@ -47,9 +46,11 @@ export const NewPost = () => {
 
   const createPost = async () => {
     try {
-      const res = await createPostReq(formData);
-      console.log(res.data);
-      navigate("/");
+      if (post.length > 0 && title.length > 0) {
+        const res = await createPostReq(formData);
+        console.log(res.data);
+        navigate("/");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -86,7 +87,7 @@ export const NewPost = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 type="text"
-                maxLength="40"
+                maxLength="70"
               />
             </Flex>
             <Flex direction={"flex-col"}>
@@ -95,47 +96,18 @@ export const NewPost = () => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 type="text"
-                maxLength="65"
+                maxLength="130"
               />
             </Flex>
-            <Flex direction={"flex-col"} gap={"gap-3"}>
-              <Flex direction={"flex-col"}>
-                <Text>Fotoğraf ekleyecek misiniz?</Text>
-                <Flex direction={"flex-row"} gap={"gap-2"}>
-                  <input
-                    type="radio"
-                    id="yes"
-                    value="true"
-                    onChange={(e) => setCheckBox(e.target.value === "true")}
-                    checked={checkBox}
-                  />
-                  <label for="yes">Evet</label>
-                </Flex>
-                <Flex direction={"flex-row"} gap={"gap-2"}>
-                  <input
-                    type="radio"
-                    id="no"
-                    value="false"
-                    onChange={(e) => setCheckBox(e.target.value === "true")}
-                    checked={!checkBox}
-                  />
-                  <label for="no">Hayır</label>
-                </Flex>
-              </Flex>
-              <Flex>
-                {checkBox && (
-                  <input
-                    type="file"
-                    onChange={(e) => setImage(e.target.files[0])}
-                  />
-                )}
-              </Flex>
-            </Flex>
+
+            <ImagePicker setImage={setImage} />
+
             <TextArea
               placeholder={"Gönderi*"}
               value={post}
               onChange={(e) => setPost(e.target.value)}
             />
+
             <Flex>
               <Button bg={"bg-blue2"} onClick={createPost} text={"Yayımla"} />
             </Flex>

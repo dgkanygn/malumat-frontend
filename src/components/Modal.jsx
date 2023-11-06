@@ -8,6 +8,10 @@ import axios from "axios";
 // context
 import { useNavigate } from "react-router-dom";
 
+// request
+import { deletePostReq } from "../requests/Post";
+import { deleteCommentReq } from "../requests/Comment";
+
 export const Modal = () => {
   const navigate = useNavigate();
 
@@ -26,9 +30,8 @@ export const Modal = () => {
   const deleteConfirmation = async () => {
     try {
       if (showModal.deleted === "comment") {
-        const res = await axios.delete(
-          `http://localhost:3001/deleteComment/${showModal.id}`
-        );
+        await deleteCommentReq(showModal.id);
+
         const updatedArray = postComments.filter(
           (comment) => comment._id !== showModal.id
         );
@@ -39,9 +42,7 @@ export const Modal = () => {
           id: "",
         });
       } else if (showModal.deleted === "post") {
-        const res = await axios.delete(
-          `http://localhost:3001/deletePost/${showModal.id}`
-        );
+        await deletePostReq(showModal.id);
 
         setShowModal({
           isShow: false,

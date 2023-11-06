@@ -10,6 +10,7 @@ import { Flex } from "../components/Flex";
 import { Box } from "../components/Box";
 import { Text } from "../components/Text";
 import { ProfileButton } from "../components/ProfileButton";
+import { Input } from "../components/Input";
 
 // context
 import Data from "../context/Data";
@@ -17,12 +18,8 @@ import Data from "../context/Data";
 // router
 import { Link } from "react-router-dom";
 
-// axios
-import axios from "axios";
-
 // request
-import { getPostsReq, getTrendsReq } from "../requests/Post";
-import { Input } from "../components/Input";
+import { filterDataReq, getPostsReq, getTrendsReq } from "../requests/Post";
 
 export const Home = () => {
   const { isLogin, userInfo, features, setFeatures, jwt, setJwt } =
@@ -67,8 +64,7 @@ export const Home = () => {
 
   const filterApi = async () => {
     try {
-      const res = await axios.get(`http://localhost:3001/filter/${search}`);
-      console.log(res.data);
+      const res = await filterDataReq(search);
       setDatas(res.data);
     } catch (error) {
       console.log(error);

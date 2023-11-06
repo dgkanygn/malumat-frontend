@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 import { ProfileButton } from "./ProfileButton";
 import { Button } from "./Button";
 
-// axios
-import axios from "axios";
+// // axios
+// import axios from "axios";
 
 // context
 import Data from "../context/Data";
@@ -17,23 +17,23 @@ import { Container } from "./Container";
 export const Navbar = () => {
   const { isLogin, userInfo } = useContext(Data);
 
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
 
-  const [datas, setDatas] = useState([]);
+  // const [datas, setDatas] = useState([]);
 
-  const filterApi = async () => {
-    try {
-      const res = await axios.get(`http://localhost:3001/filter/${search}`);
-      console.log(res.data);
-      setDatas(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const filterApi = async () => {
+  //   try {
+  //     const res = await axios.get(`http://localhost:3001/filter/${search}`);
+  //     console.log(res.data);
+  //     setDatas(res.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (search) filterApi();
-  }, [search]);
+  // useEffect(() => {
+  //   if (search) filterApi();
+  // }, [search]);
 
   return (
     <>
@@ -49,7 +49,7 @@ export const Navbar = () => {
             </div>
             <div class="flex items-center gap-10">
               <div>
-                {search && (
+                {/* {search && (
                   <div className="bg-white absolute shadow-lg">
                     {datas.map((data, index) => (
                       <Link
@@ -71,7 +71,7 @@ export const Navbar = () => {
                       </Link>
                     ))}
                   </div>
-                )}
+                )} */}
               </div>
 
               {isLogin ? (

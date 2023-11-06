@@ -51,7 +51,6 @@ export const ProfileButton = ({ username, image, toggle }) => {
     // },
     {
       tab: "Çıkış Yap",
-      // path: "/login",
       onClick: logOut,
     },
   ];

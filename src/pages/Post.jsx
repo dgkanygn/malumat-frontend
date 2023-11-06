@@ -245,7 +245,7 @@ export const Post = () => {
             <Input
               placeholder={"Başlık"}
               type="text"
-              maxLength="40"
+              maxLength="70"
               value={currentPostData.title}
               onChange={(e) =>
                 setCurrentPostData({
@@ -257,7 +257,7 @@ export const Post = () => {
             <Input
               placeholder={"Açıklama"}
               type="text"
-              maxLength="40"
+              maxLength="130"
               value={currentPostData.description}
               onChange={(e) =>
                 setCurrentPostData({

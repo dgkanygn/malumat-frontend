@@ -1,6 +1,13 @@
 import React from "react";
 
-export const Input = ({ placeholder, type, name, value, onChange }) => {
+export const Input = ({
+  placeholder,
+  type,
+  name,
+  value,
+  onChange,
+  maxLength,
+}) => {
   return (
     <>
       <input
@@ -10,6 +17,7 @@ export const Input = ({ placeholder, type, name, value, onChange }) => {
         name={name}
         value={value}
         onChange={onChange}
+        maxLength={maxLength}
       />
     </>
   );

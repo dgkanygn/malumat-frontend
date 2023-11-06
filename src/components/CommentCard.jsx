@@ -7,17 +7,17 @@ import { Link } from "react-router-dom";
 import { IconButton } from "./IconButton";
 import { TextArea } from "./TextArea";
 import { Flex } from "./Flex";
+import { Box } from "./Box";
+import { Container } from "./Container";
 
 // context
 import Data from "../context/Data";
 
-// axios
-import axios from "axios";
-
 // moment
 import { Moment } from "./Moment";
-import { Box } from "./Box";
-import { Container } from "./Container";
+
+// request
+import { likeCommentReq, updateCommentReq } from "../requests/Comment";
 
 export const CommentCard = ({
   author,
@@ -38,11 +38,10 @@ export const CommentCard = ({
 
   const handleLike = async () => {
     try {
-      const res = await axios.put("http://localhost:3001/addLikesComment", {
+      const res = await likeCommentReq({
         commentId: commentId,
         userId: userInfo.username,
       });
-      console.log(res.data.updated.likes.length);
       setCommentLikes(res.data.updated.likes.length);
     } catch (error) {
       console.log(error);
@@ -63,10 +62,8 @@ export const CommentCard = ({
 
   const editComment = async () => {
     try {
-      const res = await axios.put(
-        `http://localhost:3001/updateComment/${commentId}`,
-        { comment: commentInp }
-      );
+      await updateCommentReq(commentId, { comment: commentInp });
+
       setPostComments((prevComments) =>
         prevComments.map((item) =>
           item._id === commentId ? { ...item, comment: commentInp } : item

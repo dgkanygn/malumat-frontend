@@ -14,6 +14,8 @@ import Data from "../context/Data";
 import { loginReq } from "../requests/Auth";
 import { Flex } from "../components/Flex";
 import { Input } from "../components/Input";
+import { Box } from "../components/Box";
+import { Container } from "../components/Container";
 
 export const Login = () => {
   const { isLogin, setIsLogin, userInfo, setUserInfo } = useContext(Data);
@@ -58,7 +60,6 @@ export const Login = () => {
     try {
       e.preventDefault();
       const res = await loginReq(formData);
-      // console.log(res.data.user);
       setIsLogin(!isLogin);
       setUserInfo(res.data.user);
       navigate("/");
@@ -70,14 +71,12 @@ export const Login = () => {
   return (
     <>
       <div className="bg-blue1 h-screen w-screen">
-        <div className="">
-          <div className="container mx-auto w-[400px]">
-            <div className="bg-white shadow-md flex flex-col justify-center items-center gap-5 py-5">
-              <Text size={"text-[30px]"} weight={"font-bold"}>
-                malumat.
-              </Text>
-              <Text>Oku, yaz, yorumla.</Text>
-            </div>
+        <div className="container mx-auto w-[400px]">
+          <div className="bg-white shadow-md flex flex-col justify-center items-center gap-5 py-5">
+            <Text size={"text-[30px]"} weight={"font-bold"}>
+              malumat.
+            </Text>
+            <Text>Oku, yaz, yorumla.</Text>
           </div>
         </div>
 

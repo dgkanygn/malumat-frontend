@@ -3,11 +3,6 @@ import { createContext, useState } from "react";
 const Data = createContext();
 
 export const DataProvider = ({ children }) => {
-  // // login olayları
-  // const [isLogin, setIsLogin] = useState(false);
-  // const [userInfo, setUserInfo] = useState({});
-  // const [jwt, setJwt] = useState("");
-
   // login kontrolü
   const data1 = localStorage.getItem("isLogin");
   const [isLogin, setIsLogin] = useState(data1 ? data1 : false);
