@@ -6,7 +6,14 @@ import { Link } from "react-router-dom";
 // moment
 import { Moment } from "./Moment";
 
+// utils
+import { filterText } from "../utils/filterText";
+
 export const TrendCard = ({ title, author, date, id, keyId }) => {
+  const titleArr = title.split(" ");
+
+  let filteredTitle = filterText(titleArr, 30);
+
   return (
     <>
       <div class="flex justify-between items-start gap-2">
@@ -18,7 +25,9 @@ export const TrendCard = ({ title, author, date, id, keyId }) => {
         <div className="flex flex-col gap-2">
           <Link to={`/post/${id}`}>
             <p class="w-48 text-[18px]">
-              <b className="hover:text-slate-700 cursor-pointer">{title}</b>
+              <b className="hover:text-slate-700 cursor-pointer">
+                {filteredTitle}
+              </b>
             </p>
           </Link>
           <div class="flex items-center justify-start gap-2">

@@ -6,6 +6,9 @@ import { ProfileButton } from "./ProfileButton";
 import { Moment } from "./Moment";
 import { Flex } from "./Flex";
 
+// utils
+import { filterText } from "../utils/filterText";
+
 export const PostCard = ({
   title,
   author,
@@ -20,6 +23,12 @@ export const PostCard = ({
 
   const link =
     "https://res.cloudinary.com/dszyogrt7/image/upload/v1698925680/ybtqchgxz9ybhpyjkxji.png";
+
+  const titleArr = title.split(" ");
+  let filteredTitle = filterText(titleArr, 35);
+
+  const subjectArr = subject.split(" ");
+  let filteredSubject = filterText(subjectArr, 50);
 
   return (
     <>
@@ -45,10 +54,10 @@ export const PostCard = ({
           <div className="flex flex-col items-start gap-2">
             <Link to={`/post/${id}`}>
               <p class="text-[25px]">
-                <b className="hover:text-slate-700">{title}</b>
+                <b className="hover:text-slate-700">{filteredTitle}</b>
               </p>
             </Link>
-            <p>{subject}</p>
+            <p>{filteredSubject}</p>
           </div>
           <div class={`flex items-center justify-start ${!isOwner && "gap-2"}`}>
             <Link to={`/profile/${author}`}>
