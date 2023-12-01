@@ -87,7 +87,7 @@ export const NewPost = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 type="text"
-                maxLength="70"
+                maxLength="60"
               />
             </Flex>
             <Flex direction={"flex-col"}>

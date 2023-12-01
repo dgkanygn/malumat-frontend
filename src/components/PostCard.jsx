@@ -9,6 +9,8 @@ import { Flex } from "./Flex";
 // utils
 import { filterText } from "../utils/filterText";
 
+import pic2 from "../assets/images/pic2.png";
+
 export const PostCard = ({
   title,
   author,
@@ -24,11 +26,8 @@ export const PostCard = ({
   const link =
     "https://res.cloudinary.com/dszyogrt7/image/upload/v1698925680/ybtqchgxz9ybhpyjkxji.png";
 
-  const titleArr = title.split(" ");
-  let filteredTitle = filterText(titleArr, 35);
-
   const subjectArr = subject.split(" ");
-  let filteredSubject = filterText(subjectArr, 50);
+  let filteredSubject = filterText(subjectArr, 100);
 
   return (
     <>
@@ -36,14 +35,14 @@ export const PostCard = ({
         direction={"flex-col"}
         gap={"gap-4"}
         prop1={"md:flex-row"}
-        align={"lg:items-center"}
+        align={"lg:items-start"}
       >
         <div className="flex-shrink-0 w-[300px] h-[200px]">
           <div className="relative w-full h-full">
             <Link to={`/post/${id}`}>
               <img
                 class="absolute inset-0 w-full h-full object-cover rounded"
-                src={image === " " ? link : image}
+                src={!image ? pic2 : image}
                 alt=""
               />
             </Link>
@@ -51,10 +50,10 @@ export const PostCard = ({
         </div>
 
         <div class="flex flex-col gap-6">
-          <div className="flex flex-col items-start gap-2">
+          <div className="flex flex-col gap-2">
             <Link to={`/post/${id}`}>
-              <p class="text-[25px]">
-                <b className="hover:text-slate-700">{filteredTitle}</b>
+              <p class="text-[20px]">
+                <b className="hover:text-slate-700">{title}</b>
               </p>
             </Link>
             <p>{filteredSubject}</p>

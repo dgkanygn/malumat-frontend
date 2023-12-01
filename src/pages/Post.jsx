@@ -230,7 +230,7 @@ export const Post = () => {
             </Text>
             <Text>{postData.description}</Text>
             <img
-              class="rounded-md"
+              class="rounded-md max-w-3xl"
               src={!postData.image ? link : postData.image}
               alt=""
             />

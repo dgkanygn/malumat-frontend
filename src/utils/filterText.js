@@ -13,10 +13,13 @@ export const filterText = (arr, charLimit) => {
 
   const newArr2 = newArr.join(" ");
 
-  let filtered = newArr2 + "...";
+  const oldArr = arr.join(" ");
 
-  if (newArr2) return filtered;
-  else {
-    return "";
+  if (oldArr.length !== newArr2.length) {
+    let filtered = newArr2 + "...";
+    return filtered;
+  } else {
+    if (newArr2) return newArr2;
+    else return "";
   }
 };

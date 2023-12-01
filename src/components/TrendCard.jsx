@@ -24,10 +24,8 @@ export const TrendCard = ({ title, author, date, id, keyId }) => {
         </div>
         <div className="flex flex-col gap-2">
           <Link to={`/post/${id}`}>
-            <p class="w-48 text-[18px]">
-              <b className="hover:text-slate-700 cursor-pointer">
-                {filteredTitle}
-              </b>
+            <p class="w-48 text-[15px]">
+              <b className="hover:text-slate-700 cursor-pointer">{title}</b>
             </p>
           </Link>
           <div class="flex items-center justify-start gap-2">
