@@ -28,7 +28,8 @@ export const CommentCard = ({
   setPostComments,
   image,
 }) => {
-  const { isLogin, userInfo, showModal, setShowModal } = useContext(Data);
+  const { isLogin, userInfo, showModal, setShowModal, setIsLoading } =
+    useContext(Data);
 
   const [isEdit, setIsEdit] = useState(false);
 
@@ -62,6 +63,7 @@ export const CommentCard = ({
 
   const editComment = async () => {
     try {
+      setIsLoading(true);
       await updateCommentReq(commentId, { comment: commentInp });
 
       setPostComments((prevComments) =>
@@ -70,6 +72,7 @@ export const CommentCard = ({
         )
       );
       setIsEdit(!isEdit);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }

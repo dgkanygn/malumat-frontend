@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 // components
 import { Button } from "../components/Button";
@@ -12,9 +12,12 @@ import { Box } from "../components/Box";
 // router
 import { Link, useNavigate } from "react-router-dom";
 import { ImagePicker } from "../components/ImagePicker";
+import Data from "../context/Data";
 
 export const Register = () => {
   const navigate = useNavigate();
+
+  const { setIsLoading } = useContext(Data);
 
   const inputs = [
     {
@@ -83,10 +86,14 @@ export const Register = () => {
 
   const register = async (e) => {
     try {
-      e.preventDefault();
-      const res = await registerReq(formData2);
-      console.log(res.data);
-      navigate("/login");
+      if (formData.email && formData.username && formData.password) {
+        setIsLoading(true);
+        e.preventDefault();
+        const res = await registerReq(formData2);
+        console.log(res.data);
+        navigate("/login");
+        setIsLoading(false);
+      }
     } catch (error) {
       console.log(error);
       setErrorMsg(error.response.data.message);

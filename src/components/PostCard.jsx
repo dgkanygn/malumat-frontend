@@ -23,8 +23,8 @@ export const PostCard = ({
 }) => {
   const isOwner = param === author;
 
-  const link =
-    "https://res.cloudinary.com/dszyogrt7/image/upload/v1698925680/ybtqchgxz9ybhpyjkxji.png";
+  // const link =
+  //   "https://res.cloudinary.com/dszyogrt7/image/upload/v1698925680/ybtqchgxz9ybhpyjkxji.png";
 
   const subjectArr = subject.split(" ");
   let filteredSubject = filterText(subjectArr, 100);
@@ -42,7 +42,7 @@ export const PostCard = ({
             <Link to={`/post/${id}`}>
               <img
                 class="absolute inset-0 w-full h-full object-cover rounded"
-                src={!image ? pic2 : image}
+                src={image === " " ? pic2 : image}
                 alt=""
               />
             </Link>

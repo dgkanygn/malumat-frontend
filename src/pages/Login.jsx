@@ -18,7 +18,8 @@ import { Box } from "../components/Box";
 import { Container } from "../components/Container";
 
 export const Login = () => {
-  const { isLogin, setIsLogin, userInfo, setUserInfo } = useContext(Data);
+  const { isLogin, setIsLogin, userInfo, setUserInfo, setIsLoading } =
+    useContext(Data);
 
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -42,10 +43,10 @@ export const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    username: "",
-    name: "",
-    surname: "",
-    bio: "",
+    // username: "",
+    // name: "",
+    // surname: "",
+    // bio: "",
   });
 
   const handleInputChange = (e) => {
@@ -58,11 +59,15 @@ export const Login = () => {
 
   const login = async (e) => {
     try {
-      e.preventDefault();
-      const res = await loginReq(formData);
-      setIsLogin(!isLogin);
-      setUserInfo(res.data.user);
-      navigate("/");
+      if (formData.email && formData.password) {
+        setIsLoading(true);
+        e.preventDefault();
+        const res = await loginReq(formData);
+        setIsLogin(!isLogin);
+        setUserInfo(res.data.user);
+        navigate("/");
+        setIsLoading(false);
+      }
     } catch (error) {
       setErrorMsg(error.response.data.message);
     }

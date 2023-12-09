@@ -23,7 +23,7 @@ import { createPostReq } from "../requests/Post";
 export const NewPost = () => {
   const navigate = useNavigate();
 
-  const { userInfo } = useContext(Data);
+  const { userInfo, isLoading, setIsLoading } = useContext(Data);
 
   const authorImage = userInfo.image;
   const authorId = userInfo.username;
@@ -47,16 +47,15 @@ export const NewPost = () => {
   const createPost = async () => {
     try {
       if (post.length > 0 && title.length > 0) {
+        setIsLoading(true);
         const res = await createPostReq(formData);
-        console.log(res.data);
         navigate("/");
+        setIsLoading(false);
       }
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log(post);
 
   return (
     <>

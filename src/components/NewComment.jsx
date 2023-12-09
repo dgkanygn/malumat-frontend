@@ -16,13 +16,14 @@ import { Flex } from "./Flex";
 import { Container } from "./Container";
 
 export const NewComment = ({ id, setPostComments, postComments, image }) => {
-  const { userInfo } = useContext(Data);
+  const { userInfo, setIsLoading } = useContext(Data);
 
   const [comment, setComment] = useState("");
 
   const sendComment = async () => {
     try {
       if (comment && comment !== " ") {
+        setIsLoading(true);
         const res = await createCommentReq({
           comment,
           postId: id,
@@ -31,6 +32,7 @@ export const NewComment = ({ id, setPostComments, postComments, image }) => {
         });
         setPostComments([...postComments, res.data.newComment]);
         setComment("");
+        setIsLoading(false);
       }
     } catch (error) {
       console.log(error);

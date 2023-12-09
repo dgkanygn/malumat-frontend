@@ -45,6 +45,7 @@ export const Post = () => {
     postComments,
     setPostComments,
     userInfo,
+    setIsLoading,
   } = useContext(Data);
 
   const [postData, setPostData] = useState([]);
@@ -64,9 +65,11 @@ export const Post = () => {
 
   const updatePost = async () => {
     try {
+      setIsLoading(true);
       const res = await updatePostReq(postData._id, currentPostData);
       setPostData(res?.data?.updatedPost);
       setIsEdit(!isEdit);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
