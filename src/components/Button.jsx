@@ -1,11 +1,7 @@
-import React, { useContext, useState } from "react";
 import { Oval } from "react-loader-spinner";
-import Data from "../context/Data";
 
-export const Button = ({ text, onClick, bg, hover }) => {
+export const Button = ({ text, onClick, bg, hover, isLoading }) => {
   const classes = `flex justify-center items-center rounded px-4 py-2 text-white ${bg} ${hover}`;
-
-  const { isLoading } = useContext(Data);
 
   return (
     <>

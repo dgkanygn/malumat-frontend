@@ -18,8 +18,9 @@ import { Box } from "../components/Box";
 import { Container } from "../components/Container";
 
 export const Login = () => {
-  const { isLogin, setIsLogin, userInfo, setUserInfo, setIsLoading } =
-    useContext(Data);
+  const { isLogin, setIsLogin, userInfo, setUserInfo } = useContext(Data);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -70,6 +71,7 @@ export const Login = () => {
       }
     } catch (error) {
       setErrorMsg(error.response.data.message);
+      setIsLoading(false);
     }
   };
 
@@ -104,7 +106,12 @@ export const Login = () => {
                 </Flex>
               ))}
 
-              <Button bg={"bg-blue2"} onClick={login} text={"Giriş Yap"} />
+              <Button
+                bg={"bg-blue2"}
+                onClick={login}
+                text={"Giriş Yap"}
+                isLoading={isLoading}
+              />
               {errorMsg && (
                 <div className="bg-red-100 p-1 text-center rounded">
                   <Text>{errorMsg}</Text>

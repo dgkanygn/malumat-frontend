@@ -29,8 +29,6 @@ export const DataProvider = ({ children }) => {
   // spesifik bir post'a ait yorumları tutan state (modal'dan erişim gerekmesi sebebiyle burada)
   const [postComments, setPostComments] = useState([]);
 
-  const [isLoading, setIsLoading] = useState(false);
-
   const data = {
     isLogin,
     setIsLogin,
@@ -44,8 +42,6 @@ export const DataProvider = ({ children }) => {
     setFeatures,
     postComments,
     setPostComments,
-    isLoading,
-    setIsLoading,
   };
 
   return <Data.Provider value={data}>{children}</Data.Provider>;

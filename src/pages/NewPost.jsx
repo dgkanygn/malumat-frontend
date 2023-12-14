@@ -23,7 +23,9 @@ import { createPostReq } from "../requests/Post";
 export const NewPost = () => {
   const navigate = useNavigate();
 
-  const { userInfo, isLoading, setIsLoading } = useContext(Data);
+  const { userInfo } = useContext(Data);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const authorImage = userInfo.image;
   const authorId = userInfo.username;
@@ -41,8 +43,6 @@ export const NewPost = () => {
   formData.append("image", image);
   formData.append("authorId", authorId);
   formData.append("authorImage", authorImage);
-
-  console.log(formData);
 
   const createPost = async () => {
     try {
@@ -108,7 +108,12 @@ export const NewPost = () => {
             />
 
             <Flex>
-              <Button bg={"bg-blue2"} onClick={createPost} text={"Yayımla"} />
+              <Button
+                bg={"bg-blue2"}
+                onClick={createPost}
+                text={"Yayımla"}
+                isLoading={isLoading}
+              />
             </Flex>
           </Flex>
         </Container>

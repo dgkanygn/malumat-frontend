@@ -28,8 +28,9 @@ export const CommentCard = ({
   setPostComments,
   image,
 }) => {
-  const { isLogin, userInfo, showModal, setShowModal, setIsLoading } =
-    useContext(Data);
+  const { isLogin, userInfo, showModal, setShowModal } = useContext(Data);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [isEdit, setIsEdit] = useState(false);
 
@@ -133,7 +134,13 @@ export const CommentCard = ({
         <Box>
           {!isEdit && (
             <>
-              <p>{postComment}</p>
+              {postComment && (
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: postComment.replace(/\n/g, "<br/>"),
+                  }}
+                />
+              )}
             </>
           )}
 
@@ -154,6 +161,7 @@ export const CommentCard = ({
                     bg={"bg-blue2"}
                     onClick={editComment}
                     text={"Düzenle"}
+                    isLoading={isLoading}
                   />
                 </Flex>
               </Flex>

@@ -16,7 +16,9 @@ import { Flex } from "./Flex";
 import { Container } from "./Container";
 
 export const NewComment = ({ id, setPostComments, postComments, image }) => {
-  const { userInfo, setIsLoading } = useContext(Data);
+  const { userInfo } = useContext(Data);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [comment, setComment] = useState("");
 
@@ -59,7 +61,12 @@ export const NewComment = ({ id, setPostComments, postComments, image }) => {
             onChange={(e) => setComment(e.target.value)}
           ></TextArea>
           <Flex>
-            <Button bg={"bg-blue2"} onClick={sendComment} text={"Yorum Yap"} />
+            <Button
+              bg={"bg-blue2"}
+              onClick={sendComment}
+              text={"Yorum Yap"}
+              isLoading={isLoading}
+            />
           </Flex>
         </Flex>
       </Container>

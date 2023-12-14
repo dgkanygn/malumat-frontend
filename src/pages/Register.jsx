@@ -17,7 +17,9 @@ import Data from "../context/Data";
 export const Register = () => {
   const navigate = useNavigate();
 
-  const { setIsLoading } = useContext(Data);
+  // const { setIsLoading } = useContext(Data);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const inputs = [
     {
@@ -97,6 +99,7 @@ export const Register = () => {
     } catch (error) {
       console.log(error);
       setErrorMsg(error.response.data.message);
+      setIsLoading(false);
     }
   };
 
@@ -148,7 +151,12 @@ export const Register = () => {
                 <p className="bg-red-100 p-3 text-red-700">{errorMsg}</p>
               )}
 
-              <Button bg={"bg-blue2"} onClick={register} text={"Kaydol"} />
+              <Button
+                bg={"bg-blue2"}
+                onClick={register}
+                text={"Kaydol"}
+                isLoading={isLoading}
+              />
 
               <Text>
                 Bir hesabın var mı?

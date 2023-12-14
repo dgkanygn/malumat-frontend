@@ -45,8 +45,10 @@ export const Post = () => {
     postComments,
     setPostComments,
     userInfo,
-    setIsLoading,
+    // setIsLoading,
   } = useContext(Data);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [postData, setPostData] = useState([]);
 
@@ -160,6 +162,8 @@ export const Post = () => {
 
   const link = "https://l24.im/8Z0B";
 
+  console.log(postData.post);
+
   return (
     <>
       {showModal.isShow && <Modal />}
@@ -238,7 +242,15 @@ export const Post = () => {
               alt=""
             />
             <Text>
-              <p dangerouslySetInnerHTML={{ __html: postData.post }}></p>
+              {/* <p dangerouslySetInnerHTML={{ __html: postData.post }}></p> */}
+
+              {postData.post && (
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: postData.post.replace(/\n/g, "<br/>"),
+                  }}
+                />
+              )}
             </Text>
           </Flex>
         </Container>
@@ -277,7 +289,12 @@ export const Post = () => {
               }
             />
             <Flex>
-              <Button bg={"bg-blue2"} onClick={updatePost} text={"Düzenle"} />
+              <Button
+                bg={"bg-blue2"}
+                onClick={updatePost}
+                text={"Düzenle"}
+                isLoading={isLoading}
+              />
             </Flex>
           </Flex>
         </Container>
