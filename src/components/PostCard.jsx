@@ -23,9 +23,6 @@ export const PostCard = ({
 }) => {
   const isOwner = param === author;
 
-  // const link =
-  //   "https://res.cloudinary.com/dszyogrt7/image/upload/v1698925680/ybtqchgxz9ybhpyjkxji.png";
-
   const subjectArr = subject.split(" ");
   let filteredSubject = filterText(subjectArr, 100);
 

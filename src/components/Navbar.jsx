@@ -7,33 +7,12 @@ import { Link } from "react-router-dom";
 import { ProfileButton } from "./ProfileButton";
 import { Button } from "./Button";
 
-// // axios
-// import axios from "axios";
-
 // context
 import Data from "../context/Data";
 import { Container } from "./Container";
 
 export const Navbar = () => {
   const { isLogin, userInfo } = useContext(Data);
-
-  // const [search, setSearch] = useState("");
-
-  // const [datas, setDatas] = useState([]);
-
-  // const filterApi = async () => {
-  //   try {
-  //     const res = await axios.get(`http://localhost:3001/filter/${search}`);
-  //     console.log(res.data);
-  //     setDatas(res.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (search) filterApi();
-  // }, [search]);
 
   return (
     <>

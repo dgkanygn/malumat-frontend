@@ -162,8 +162,6 @@ export const Post = () => {
 
   const link = "https://l24.im/8Z0B";
 
-  console.log(postData.post);
-
   return (
     <>
       {showModal.isShow && <Modal />}

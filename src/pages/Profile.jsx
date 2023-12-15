@@ -67,7 +67,7 @@ export const Profile = () => {
   // profil bilgilerinin getirilmesi
   const { id } = useParams();
 
-  console.log(id, password);
+  const isOwner = id === userInfo.username;
 
   const getProfile = async () => {
     try {
@@ -182,17 +182,19 @@ export const Profile = () => {
             gap={"gap-10"}
           >
             <Box>
-              {tabs.map((tab, index) => (
-                <p
-                  key={index}
-                  className={`${
-                    activeTab === tab.id ? "bg-blue1" : ""
-                  }   p-3 cursor-pointer hover:bg-blue1 text-[19px]`}
-                  onClick={() => handleTabClick(tab.id)}
-                >
-                  {tab.name}
-                </p>
-              ))}
+              {tabs.map((tab, index) =>
+                index === tabs.length - 1 && !isOwner ? null : (
+                  <p
+                    key={index}
+                    className={`${
+                      activeTab === tab.id ? "bg-blue1" : ""
+                    }   p-3 cursor-pointer hover:bg-blue1 text-[19px]`}
+                    onClick={() => handleTabClick(tab.id)}
+                  >
+                    {tab.name}
+                  </p>
+                )
+              )}
             </Box>
             <Box>
               {activeTab === 1 && (
