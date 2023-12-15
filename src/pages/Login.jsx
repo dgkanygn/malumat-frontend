@@ -26,13 +26,11 @@ export const Login = () => {
 
   const inputs = [
     {
-      label: "E-Mail",
       type: "text",
-      name: "email",
-      placeholder: "E-Mail",
+      name: "loginData",
+      placeholder: "E-Mail veya kullanıcı adı",
     },
     {
-      label: "Password",
       type: "password",
       name: "password",
       placeholder: "Şifre",
@@ -42,12 +40,8 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    email: "",
+    loginData: "",
     password: "",
-    // username: "",
-    // name: "",
-    // surname: "",
-    // bio: "",
   });
 
   const handleInputChange = (e) => {
@@ -60,7 +54,7 @@ export const Login = () => {
 
   const login = async (e) => {
     try {
-      if (formData.email && formData.password) {
+      if (formData.loginData && formData.password) {
         setIsLoading(true);
         e.preventDefault();
         const res = await loginReq(formData);
