@@ -9,17 +9,18 @@ import { Flex } from "../components/Flex";
 import { Text } from "../components/Text";
 
 export const Settings = () => {
-  const [activeTab, setActiveTab] = useState(1);
+  const [activeTab, setActiveTab] = useState(2);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
   };
 
   const tabs = [
-    {
-      name: "Edit Profile",
-      id: 1,
-    },
+    // {
+    //   name: "Edit Profile",
+    //   id: 1,
+    // },
     {
       name: "Change Password",
       id: 2,
@@ -114,7 +115,18 @@ export const Settings = () => {
                         type="text"
                       />
                     </Flex>
-                    <Button text={"Save Changes"} />
+                    <Button
+                      bg={"bg-blue2"}
+                      text={"Değişiklikleri Kaydet"}
+                      isLoading={isLoading}
+                    />
+
+                    {/* <Button
+                      bg={"bg-blue2"}
+                      onClick={createPost}
+                      text={"Yayımla"}
+                      isLoading={isLoading}
+                    /> */}
                   </Flex>
                 </>
               )}
@@ -146,7 +158,11 @@ export const Settings = () => {
                         type="text"
                       />
                     </Flex>
-                    <Button text={"Save Changes"} />
+                    <Button
+                      bg={"bg-blue2"}
+                      text={"Değişiklikleri Kaydet"}
+                      isLoading={isLoading}
+                    />
                   </Flex>
                 </>
               )}
@@ -165,7 +181,11 @@ export const Settings = () => {
                         type="password"
                       />
                     </Flex>
-                    <Button danger text={"Save Changes"} />
+                    <Button
+                      bg={"bg-blue2"}
+                      text={"Hesabı Sil"}
+                      isLoading={isLoading}
+                    />
                   </Flex>
                 </>
               )}

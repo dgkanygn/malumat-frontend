@@ -45,12 +45,12 @@ export const ProfileButton = ({ username, image, toggle }) => {
       tab: "Profil",
       path: `/profile/${userInfo.username}`,
     },
-    // {
-    //   tab: "Settings",
-    //   path: "/settings",
-    // },
     {
-      tab: "Çıkış Yap",
+      tab: "Ayarlar",
+      path: "/settings",
+    },
+    {
+      tab: "Çıkış",
       onClick: logOut,
     },
   ];

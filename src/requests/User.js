@@ -16,3 +16,10 @@ export const getPostsByAuthorIdReq = (data) => {
 export const getFavoritePostReq = (data) => {
   return axios.get(`${BASE_URL}/getFavoritePost/${data}`);
 };
+
+// hesap silme
+export const deleteUserReq = (username, password) => {
+  return axios.delete(`${BASE_URL}/deleteUser`, {
+    params: { username, password },
+  });
+};

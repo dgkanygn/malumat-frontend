@@ -14,10 +14,11 @@ import { Button } from "../components/Button";
 import pic from "../assets/images/pic.jpg";
 
 // router
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 // request
 import {
+  deleteUserReq,
   getFavoritePostReq,
   getPostsByAuthorIdReq,
   getUserByUsernameReq,
@@ -25,9 +26,10 @@ import {
 
 // context
 import Data from "../context/Data";
+import axios from "axios";
 
 export const Profile = () => {
-  const { userInfo } = useContext(Data);
+  const { userInfo, setIsLogin } = useContext(Data);
 
   const [profile, setProfile] = useState({});
 
@@ -36,6 +38,12 @@ export const Profile = () => {
   const [favorites, setFavorites] = useState([]);
 
   const [activeTab, setActiveTab] = useState(1);
+
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
@@ -50,14 +58,16 @@ export const Profile = () => {
       name: "Favoriler",
       id: 2,
     },
-    // {
-    //   name: "Hesap",
-    //   id: 3,
-    // },
+    {
+      name: "Hesabı sil",
+      id: 3,
+    },
   ];
 
   // profil bilgilerinin getirilmesi
   const { id } = useParams();
+
+  console.log(id, password);
 
   const getProfile = async () => {
     try {
@@ -83,6 +93,23 @@ export const Profile = () => {
       setFavorites(res?.data?.favorites);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const deleteAccount = async () => {
+    try {
+      if (password) {
+        setIsLoading(true);
+        const res = await deleteUserReq(id, password);
+        localStorage.clear();
+        setIsLogin(false);
+        navigate("/");
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+      setErrorMsg(error?.response?.data?.message);
+      setIsLoading(false);
     }
   };
 
@@ -222,7 +249,7 @@ export const Profile = () => {
                   )}
                 </>
               )}
-              {/* {activeTab === 3 && (
+              {activeTab === 3 && (
                 <>
                   <Flex
                     direction={"flex-col"}
@@ -237,12 +264,27 @@ export const Profile = () => {
                       align={"items-start"}
                       gap={"gap-5"}
                     >
-                      <Input placeholder={"Şifre"} />
-                      <Button bg={"bg-red-700"} text={"Hesabı sil"} />
+                      <Input
+                        placeholder={"Şifre"}
+                        type={"password"}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+
+                      {errorMsg && (
+                        <Text color={"text-red-700"}>{errorMsg}</Text>
+                      )}
+
+                      <Button
+                        onClick={deleteAccount}
+                        bg={"bg-red-700"}
+                        text={"Hesabı sil"}
+                        isLoading={isLoading}
+                      />
                     </Flex>
                   </Flex>
                 </>
-              )} */}
+              )}
             </Box>
           </Flex>
         </Container>
