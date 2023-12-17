@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "./Button";
 
 // context
 import Data from "../context/Data";
-import axios from "axios";
 
 // context
 import { useNavigate } from "react-router-dom";
@@ -27,21 +26,23 @@ export const Modal = () => {
     setShowModal({ isShow: false, deleted: "", id: "" });
   };
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const deleteConfirmation = async () => {
     try {
       if (showModal.deleted === "comment") {
+        setIsLoading(true);
         await deleteCommentReq(showModal.id);
 
         const updatedArray = postComments.filter(
           (comment) => comment._id !== showModal.id
         );
         setPostComments(updatedArray);
-        setShowModal({
-          isShow: false,
-          deleted: "",
-          id: "",
-        });
+        setShowModal({ isShow: false, deleted: "", id: "" });
+
+        setIsLoading(false);
       } else if (showModal.deleted === "post") {
+        setIsLoading(true);
         await deletePostReq(showModal.id);
 
         setShowModal({
@@ -50,6 +51,8 @@ export const Modal = () => {
           id: "",
         });
         navigate("/");
+
+        setIsLoading(false);
       }
     } catch (error) {
       console.log(error);
@@ -72,6 +75,7 @@ export const Modal = () => {
               bg={"bg-red-700"}
               text={"Sil"}
               onClick={deleteConfirmation}
+              isLoading={isLoading}
             />
             <Button bg={"bg-blue2"} text={"İptal"} onClick={closeModal} />
           </div>

@@ -105,9 +105,9 @@ export const Register = () => {
 
   return (
     <>
-      <div className="bg-blue1">
-        <div className="">
-          <div className="container mx-auto w-[400px]">
+      <div className="bg-blue1 min-h-screen">
+        <div className="flex flex-col gap-10">
+          <div className="lg:container lg:mx-auto lg:w-[400px] md:container md:mx-auto md:w-[400px] sm:container sm:mx-auto sm:w-[400px]">
             <div className="bg-white shadow-md flex flex-col justify-center items-center gap-5 py-5">
               <Text size={"text-[30px]"} weight={"font-bold"}>
                 malumat.
@@ -115,11 +115,9 @@ export const Register = () => {
               <Text>Oku, yaz, yorumla.</Text>
             </div>
           </div>
-        </div>
 
-        <div className="mt-[50px]">
-          <div className="container mx-auto w-[400px]">
-            <form className="bg-white shadow-md flex flex-col justify-center  gap-5  pb-[300px] pt-10 px-10">
+          <div className="lg:container lg:mx-auto lg:w-[400px] md:container md:mx-auto md:w-[400px] sm:container sm:mx-auto sm:w-[400px]">
+            <form className="bg-white shadow-md flex flex-col justify-center gap-5 pb-[300px] pt-10 px-10">
               <Text size={"text-[30px]"} weight={"font-bold"}>
                 Kaydol
               </Text>

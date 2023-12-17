@@ -83,7 +83,7 @@ export const Post = () => {
         postId: id,
         userId: userInfo.username,
       });
-      setFavCount(res.data.updated.favorites.length);
+      setFavCount(res?.data?.updated?.favorites?.length);
     } catch (error) {
       console.log(error);
     }
@@ -122,7 +122,7 @@ export const Post = () => {
     try {
       const res = await getPostReq(id);
       setPostData(res?.data?.post);
-      setFavCount(postData.favorites.length);
+      setFavCount(postData?.favorites?.length);
     } catch (error) {
       console.log(error);
     }
@@ -131,7 +131,7 @@ export const Post = () => {
   const getFavLength = async () => {
     try {
       const res = await getFavLengthByIdReq(id);
-      setFavCount(res.data.favLength);
+      setFavCount(res?.data?.favLength);
     } catch (error) {
       console.log(error);
     }
@@ -161,6 +161,8 @@ export const Post = () => {
   }, []);
 
   const link = "https://l24.im/8Z0B";
+
+  // console.log(postComments);
 
   return (
     <>
@@ -240,8 +242,6 @@ export const Post = () => {
               alt=""
             />
             <Text>
-              {/* <p dangerouslySetInnerHTML={{ __html: postData.post }}></p> */}
-
               {postData.post && (
                 <p
                   dangerouslySetInnerHTML={{
@@ -333,6 +333,7 @@ export const Post = () => {
               setPostComments={setPostComments}
               commentId={postComment._id}
               image={postComment.authorImage}
+              likes={postComment.likes}
             />
           ))}
         </Flex>

@@ -27,6 +27,7 @@ export const CommentCard = ({
   postComments,
   setPostComments,
   image,
+  likes,
 }) => {
   const { isLogin, userInfo, showModal, setShowModal } = useContext(Data);
 
@@ -36,7 +37,7 @@ export const CommentCard = ({
 
   const [commentInp, setCommentInp] = useState(postComment);
 
-  const [commentLikes, setCommentLikes] = useState();
+  const [commentLikes, setCommentLikes] = useState(likes?.length);
 
   const handleLike = async () => {
     try {
