@@ -21,6 +21,8 @@ import { useNavigate } from "react-router-dom";
 import { createPostReq } from "../requests/Post";
 
 export const NewPost = () => {
+  const token = localStorage.getItem("jwt");
+
   const navigate = useNavigate();
 
   const { userInfo } = useContext(Data);
@@ -48,7 +50,7 @@ export const NewPost = () => {
     try {
       if (post.length > 0 && title.length > 0) {
         setIsLoading(true);
-        const res = await createPostReq(formData);
+        const res = await createPostReq(formData, token);
         navigate("/");
         setIsLoading(false);
       }

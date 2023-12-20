@@ -34,6 +34,8 @@ import {
 import { getCommentsReq } from "../requests/Comment";
 
 export const Post = () => {
+  const token = localStorage.getItem("jwt");
+
   // url'deki id ile spesifik bir post'un ve yorumlarının getirilmesi
   const { id } = useParams();
 
@@ -68,7 +70,7 @@ export const Post = () => {
   const updatePost = async () => {
     try {
       setIsLoading(true);
-      const res = await updatePostReq(postData._id, currentPostData);
+      const res = await updatePostReq(postData._id, currentPostData, token);
       setPostData(res?.data?.updatedPost);
       setIsEdit(!isEdit);
       setIsLoading(false);
@@ -79,10 +81,13 @@ export const Post = () => {
 
   const handleFav = async () => {
     try {
-      const res = await addFavoritesPostReq({
-        postId: id,
-        userId: userInfo.username,
-      });
+      const res = await addFavoritesPostReq(
+        {
+          postId: id,
+          userId: userInfo.username,
+        },
+        token
+      );
       setFavCount(res?.data?.updated?.favorites?.length);
     } catch (error) {
       console.log(error);
@@ -160,10 +165,6 @@ export const Post = () => {
     getFavLength();
   }, []);
 
-  const link = "https://l24.im/8Z0B";
-
-  // console.log(postComments);
-
   return (
     <>
       {showModal.isShow && <Modal />}
@@ -238,7 +239,7 @@ export const Post = () => {
             <Text>{postData.description}</Text>
             <img
               class="rounded-md max-w-3xl"
-              src={!postData.image ? link : postData.image}
+              src={postData.image && postData.image}
               alt=""
             />
             <Text>

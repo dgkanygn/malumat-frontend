@@ -27,31 +27,7 @@ export const Navbar = () => {
               </Link>
             </div>
             <div class="flex items-center gap-10">
-              <div>
-                {/* {search && (
-                  <div className="bg-white absolute shadow-lg">
-                    {datas.map((data, index) => (
-                      <Link
-                        to={
-                          data.title
-                            ? `/post/${data._id}`
-                            : `/profile/${data.username}`
-                        }
-                      >
-                        <p
-                          key={index}
-                          className="p-2 w-[205px] hover:bg-slate-100 cursor-pointer "
-                        >
-                          {data.title ? data.title : data.username}{" "}
-                          <i>
-                            <b>{data.title ? "post" : "user"}</b>
-                          </i>
-                        </p>
-                      </Link>
-                    ))}
-                  </div>
-                )} */}
-              </div>
+              <div></div>
 
               {isLogin ? (
                 <ProfileButton

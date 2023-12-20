@@ -18,8 +18,11 @@ export const getFavoritePostReq = (data) => {
 };
 
 // hesap silme
-export const deleteUserReq = (username, password) => {
+export const deleteUserReq = (username, password, token) => {
   return axios.delete(`${BASE_URL}/deleteUser`, {
     params: { username, password },
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
 };

@@ -1,9 +1,6 @@
 import React from "react";
 
 export const IconButton = ({ icon, onClick, favCount, commentLikes }) => {
-  console.log(commentLikes);
-  console.log(favCount);
-
   return (
     <>
       <button

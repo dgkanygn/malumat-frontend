@@ -12,6 +12,8 @@ import { deletePostReq } from "../requests/Post";
 import { deleteCommentReq } from "../requests/Comment";
 
 export const Modal = () => {
+  const token = localStorage.getItem("jwt");
+
   const navigate = useNavigate();
 
   const {
@@ -32,7 +34,7 @@ export const Modal = () => {
     try {
       if (showModal.deleted === "comment") {
         setIsLoading(true);
-        await deleteCommentReq(showModal.id);
+        await deleteCommentReq(showModal.id, token);
 
         const updatedArray = postComments.filter(
           (comment) => comment._id !== showModal.id
@@ -43,7 +45,7 @@ export const Modal = () => {
         setIsLoading(false);
       } else if (showModal.deleted === "post") {
         setIsLoading(true);
-        await deletePostReq(showModal.id);
+        await deletePostReq(showModal.id, token);
 
         setShowModal({
           isShow: false,

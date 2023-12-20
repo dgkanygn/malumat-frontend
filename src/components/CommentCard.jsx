@@ -29,6 +29,8 @@ export const CommentCard = ({
   image,
   likes,
 }) => {
+  const token = localStorage.getItem("jwt");
+
   const { isLogin, userInfo, showModal, setShowModal } = useContext(Data);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -41,10 +43,13 @@ export const CommentCard = ({
 
   const handleLike = async () => {
     try {
-      const res = await likeCommentReq({
-        commentId: commentId,
-        userId: userInfo.username,
-      });
+      const res = await likeCommentReq(
+        {
+          commentId: commentId,
+          userId: userInfo.username,
+        },
+        token
+      );
       setCommentLikes(res.data.updated.likes.length);
     } catch (error) {
       console.log(error);
@@ -52,11 +57,14 @@ export const CommentCard = ({
   };
 
   const handleDelete = async () => {
-    setShowModal({
-      isShow: true,
-      deleted: "comment",
-      id: commentId,
-    });
+    setShowModal(
+      {
+        isShow: true,
+        deleted: "comment",
+        id: commentId,
+      },
+      token
+    );
   };
 
   const handleEdit = () => {
@@ -66,7 +74,7 @@ export const CommentCard = ({
   const editComment = async () => {
     try {
       setIsLoading(true);
-      await updateCommentReq(commentId, { comment: commentInp });
+      await updateCommentReq(commentId, { comment: commentInp }, token);
 
       setPostComments((prevComments) =>
         prevComments.map((item) =>

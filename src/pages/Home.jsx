@@ -22,22 +22,23 @@ import { Link } from "react-router-dom";
 import { filterDataReq, getPostsReq, getTrendsReq } from "../requests/Post";
 
 export const Home = () => {
-  const { isLogin, userInfo, features, setFeatures, jwt, setJwt } =
-    useContext(Data);
+  const { isLogin, userInfo, features, setFeatures } = useContext(Data);
 
   useEffect(() => {
     if (isLogin) {
       localStorage.setItem("isLogin", isLogin);
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
-      localStorage.setItem("jwt", jwt);
+      // localStorage.setItem("jwt", jwt);
     }
-  }, [isLogin, userInfo, jwt]);
+  }, [isLogin, userInfo]);
 
   // trend postlar
   const [trends, setTrends] = useState([]);
 
   // tüm postlar
   // const [features, setFeatures] = useState([]);
+
+  const token = localStorage.getItem("jwt");
 
   const [search, setSearch] = useState("");
   const [datas, setDatas] = useState([]);

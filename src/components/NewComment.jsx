@@ -16,6 +16,8 @@ import { Flex } from "./Flex";
 import { Container } from "./Container";
 
 export const NewComment = ({ id, setPostComments, postComments, image }) => {
+  const token = localStorage.getItem("jwt");
+
   const { userInfo } = useContext(Data);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -26,12 +28,15 @@ export const NewComment = ({ id, setPostComments, postComments, image }) => {
     try {
       if (comment && comment !== " ") {
         setIsLoading(true);
-        const res = await createCommentReq({
-          comment,
-          postId: id,
-          ownerId: userInfo.username,
-          authorImage: userInfo.image,
-        });
+        const res = await createCommentReq(
+          {
+            comment,
+            postId: id,
+            ownerId: userInfo.username,
+            authorImage: userInfo.image,
+          },
+          token
+        );
         setPostComments([...postComments, res.data.newComment]);
         setComment("");
         setIsLoading(false);

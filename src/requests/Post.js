@@ -13,8 +13,12 @@ export const getTrendsReq = () => {
 };
 
 // yeni post oluşturma
-export const createPostReq = (body) => {
-  return axios.post(`${BASE_URL}/createPost`, body);
+export const createPostReq = (body, token) => {
+  return axios.post(`${BASE_URL}/createPost`, body, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 // spesifik bir postu getirme
@@ -23,8 +27,12 @@ export const getPostReq = (data) => {
 };
 
 // postu favorilere ekleme
-export const addFavoritesPostReq = (body) => {
-  return axios.put(`${BASE_URL}/addFavoritesPost`, body);
+export const addFavoritesPostReq = (body, token) => {
+  return axios.put(`${BASE_URL}/addFavoritesPost`, body, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 // id ile postun favori sayısını getirme
@@ -33,8 +41,12 @@ export const getFavLengthByIdReq = (data) => {
 };
 
 // post düzenleme
-export const updatePostReq = (id, body) => {
-  return axios.patch(`${BASE_URL}/updatePost/${id}`, body);
+export const updatePostReq = (id, body, token) => {
+  return axios.patch(`${BASE_URL}/updatePost/${id}`, body, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 // veri filtreleme
@@ -43,6 +55,10 @@ export const filterDataReq = (id) => {
 };
 
 // post silme
-export const deletePostReq = (id) => {
-  return axios.delete(`${BASE_URL}/deletePost/${id}`);
+export const deletePostReq = (id, token) => {
+  return axios.delete(`${BASE_URL}/deletePost/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };

@@ -60,6 +60,8 @@ export const Login = () => {
         const res = await loginReq(formData);
         setIsLogin(!isLogin);
         setUserInfo(res.data.user);
+        // setJwt(res.data.token);
+        localStorage.setItem("jwt", res.data.token);
         navigate("/");
         setIsLoading(false);
       }

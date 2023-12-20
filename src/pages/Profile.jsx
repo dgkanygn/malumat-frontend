@@ -26,9 +26,10 @@ import {
 
 // context
 import Data from "../context/Data";
-import axios from "axios";
 
 export const Profile = () => {
+  const token = localStorage.getItem("jwt");
+
   const { userInfo, setIsLogin } = useContext(Data);
 
   const [profile, setProfile] = useState({});
@@ -100,7 +101,7 @@ export const Profile = () => {
     try {
       if (password) {
         setIsLoading(true);
-        const res = await deleteUserReq(id, password);
+        const res = await deleteUserReq(id, password, token);
         localStorage.clear();
         setIsLogin(false);
         navigate("/");
