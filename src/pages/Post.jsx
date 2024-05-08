@@ -171,12 +171,12 @@ export const Post = () => {
 
       <Navbar />
 
-      <Box bg={"bg-blue1"} margin={"mt-[65px]"}>
+      <Box bg={"bg-blue1"} margin={"mt-[60px] md:mt-[65px]"}>
         <Container>
           <Flex
-            align={"items-start"}
+            align={"items-center"}
             justify={"justify-between"}
-            padding={"py-16"}
+            padding={"py-10"}
           >
             <Flex
               align={"items-center"}
@@ -233,7 +233,7 @@ export const Post = () => {
             {!isLogin && (
               <Text>{favCount} kişi bu içeriği favorilerine ekledi.</Text>
             )}
-            <Text weight={"font-bold"} size={"text-[45px]"}>
+            <Text weight={"font-bold"} size={"text-[20px] md:text-[45px]"}>
               {postData.title}
             </Text>
             <Text>{postData.description}</Text>
